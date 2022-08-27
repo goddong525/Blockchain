@@ -54,8 +54,3 @@ if n == 3:
         headers=headers)  # 서버요청
 
     print(res.text)
-
-
-
-
-
