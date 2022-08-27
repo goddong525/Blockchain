@@ -11,4 +11,9 @@
 ### committed
 
 ## 2022-August-27 
+challeng02 만들었고 
+무한루프 돌생각 안한거 빼곤 잘만든듯. 
+answer 넣어놨으니깐 보고 
+
+pyqt basic gui 복붙용 하나 써놨고 
 
