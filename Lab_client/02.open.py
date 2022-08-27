@@ -10,4 +10,5 @@ data = {
 
 res = requests.post('http://127.0.0.1:5000/open', data=json.dumps(data), headers=headers)  # posts 라는 함수에서 요구되는 데이터들을 same name
 
+
 print(res.text)
