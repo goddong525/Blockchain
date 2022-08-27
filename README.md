@@ -8,7 +8,7 @@
 
 
 ## Start at August-20
-###committed
+### committed
 
-##2022-August-27 
+## 2022-August-27 
 
