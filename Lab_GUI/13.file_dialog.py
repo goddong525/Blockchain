@@ -7,22 +7,23 @@ class GUI(QWidget):
         super().__init__()
         self.setWindowTitle('제목')
 
+        self.button = QPushButton('파일 열기')
+        self.button.clicked.connect(self.button_click)
+
         self.text_label = QLabel()
 
-        self.list = QListWidget()
-        self.list.addItem('아이템 1')
-        self.list.addItem('아이템 2')
-        self.list.clicked.connect(self.select_item)
-
         self.hbox_layout = QHBoxLayout()
+        self.hbox_layout.addWidget(self.button)
         self.hbox_layout.addWidget(self.text_label)
-        self.hbox_layout.addWidget(self.list)
 
         self.setLayout(self.hbox_layout)
 
-    def select_item(self):
-        item = self.list.currentItem()
-        self.text_label.setText(item.text())
+    def button_click(self):
+        path, _ = QFileDialog.getOpenFileName(self, '파일을 선택하세요', '.', 'All Files (*.*)')
+        if path == '':
+            self.text_label.setText('취소')
+        else:
+            self.text_label.setText('파일 경로: ' + path)
 
 
 def exception_hook(except_type, value, traceback):
