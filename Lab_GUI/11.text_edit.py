@@ -1,22 +1,28 @@
-# How to use PyQt
-
-from PyQt5.QtWidgets import *  # 안에 있는것들을 전부 import 해주겠다.
-
+from PyQt5.QtWidgets import *
 import sys
 
 
-class GUI(QWidget):  # 창을 띄울수 있는
+class GUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('제목')
 
         self.line_edit = QLineEdit()
 
+        self.button = QPushButton('버튼')
+        self.button.clicked.connect(self.button_click)
+
+        self.text_label = QLabel()
+
         self.vbox_layout = QVBoxLayout()
         self.vbox_layout.addWidget(self.line_edit)
+        self.vbox_layout.addWidget(self.button)
         self.vbox_layout.addWidget(self.text_label)
 
         self.setLayout(self.vbox_layout)
+
+    def button_click(self):
+        self.text_label.setText(self.line_edit.text())
 
 
 def exception_hook(except_type, value, traceback):

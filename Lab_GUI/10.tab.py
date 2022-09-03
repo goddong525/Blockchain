@@ -1,17 +1,14 @@
-# How to use PyQt
-
-from PyQt5.QtWidgets import *  # 안에 있는것들을 전부 import 해주겠다.
-
+from PyQt5.QtWidgets import *
 import sys
 
 
-class tab1:  # 창을 띄울수 있는
+class Tab1(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('제목')
 
         self.progressbar = QProgressBar()
-        self.progressbar.setRange(0, 100)  # 0 , 100 게이지바 왼쪽이 최솟값, 끝이 100 그래서 100 에서 150 이렇게도 가능.
+        self.progressbar.setRange(0, 100)
 
         self.value = 0
         self.progressbar.setValue(self.value)
@@ -30,16 +27,57 @@ class tab1:  # 창을 띄울수 있는
         self.progressbar.setValue(self.value)
 
 
-class GUI(QWidget):  # 창을 띄울수 있는
+class Tab2(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('제목')
 
+        self.button1 = QPushButton('버튼 1')
+        self.button2 = QPushButton('버튼 2')
+        self.button3 = QPushButton('버튼 3')
+
+        self.button1.clicked.connect(self.button1_click)
+        self.button2.clicked.connect(self.button2_click)
+        self.button3.clicked.connect(self.button3_click)
+
+        self.grid_layout = QGridLayout()
+        self.grid_layout.addWidget(self.button1, 0, 0, 1, 2)
+        self.grid_layout.addWidget(self.button2, 1, 0, 1, 1)
+        self.grid_layout.addWidget(self.button3, 1, 1, 1, 1)
+
+        self.setLayout(self.grid_layout)
+
+    def button1_click(self):
+        self.button1.setEnabled(False)
+        self.button1.setText('버튼 1 클릭')
+
+    def button2_click(self):
+        self.button2.setEnabled(False)
+        self.button2.setText('버튼 2 클릭')
+
+    def button3_click(self):
+        self.button1.setEnabled(True)
+        self.button2.setEnabled(True)
+        self.button3.setEnabled(False)
+        self.button3.setText('버튼 3 클릭')
+
+
+class GUI(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle('제목')
+
+        self.tab1 = Tab1()
+        self.tab2 = Tab2()
+
         self.tabs = QTabWidget()
-        # self.tabs.addTab
+        self.tabs.addTab(self.tab1, '탭 1')
+        self.tabs.addTab(self.tab2, '탭 2')
 
         self.vbox_layout = QVBoxLayout()
         self.vbox_layout.addWidget(self.tabs)
+
+        self.setLayout(self.vbox_layout)
 
 
 def exception_hook(except_type, value, traceback):

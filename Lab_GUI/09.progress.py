@@ -1,17 +1,14 @@
-# How to use PyQt
-
-from PyQt5.QtWidgets import *  # 안에 있는것들을 전부 import 해주겠다.
-
+from PyQt5.QtWidgets import *
 import sys
 
 
-class GUI(QWidget):  # 창을 띄울수 있는
+class GUI(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('제목')
 
         self.progressbar = QProgressBar()
-        self.progressbar.setRange(0, 100)  # 0 , 100 게이지바 왼쪽이 최솟값, 끝이 100 그래서 100 에서 150 이렇게도 가능.
+        self.progressbar.setRange(0, 100)
 
         self.value = 0
         self.progressbar.setValue(self.value)
